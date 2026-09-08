@@ -46,8 +46,8 @@ This starts a local server on port 8000 and opens `http://localhost:8000` in you
 You can also just open `Index.html` directly in a browser — it works fine over `file://` since everything is local and relative. Or run a plain server yourself and open the URL by hand:
 
 ```bash
-# Python 3 (does NOT auto-open a browser — visit http://localhost:8000 yourself)
-python3 -m http.server 8000
+# Python (does NOT auto-open a browser — visit http://localhost:8000 yourself)
+python -m http.server 8000
 ```
 
 ## How the sensitivity math works
