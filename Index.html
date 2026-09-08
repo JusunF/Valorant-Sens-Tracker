@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sens Finder — Valorant Sensitivity Generator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="kicker"><b>RED</b>/<i>BLUE</i> · SENS FINDER</div>
+      <h1>Find your <span>real</span> Valorant sensitivity</h1>
+      <p class="sub">Two short aim tests measure how you actually flick and track, then convert the result into a sensitivity value and cm/360 you can type straight into the game.</p>
+    </div>
+  </div>
+
+  <div class="steps" id="stepDots">
+    <div id="dot0" class="step active">01 · SETUP</div>
+    <div id="dot1" class="step">02 · GRID SHOT</div>
+    <div id="dot2" class="step">03 · TRACKING</div>
+    <div id="dot3" class="step">04 · RESULT</div>
+  </div>
+
+  <!-- SCREEN 0: SETUP -->
+  <div id="screen-setup" class="card">
+    <div class="card-title"><span class="tag">01</span> YOUR MOUSE</div>
+    <div class="row">
+      <div>
+        <label for="dpi">Mouse DPI</label>
+        <input type="number" id="dpi" value="800" min="100" max="26000" step="1">
+      </div>
+      <div>
+        <label for="currentSens">Current Valorant sensitivity</label>
+        <input type="number" id="currentSens" value="0.400" min="0.001" max="10" step="0.001">
+      </div>
+    </div>
+    <p class="hint">These values are only used to translate your test results into a real sensitivity number — nothing changes until you copy the result in yourself. If you don't know your DPI, check your mouse software (default is usually 800).</p>
+    <button id="startBtn">Start Test 1 — Grid Shot</button>
+  </div>
+
+  <!-- SCREEN 1: GRID SHOT (hover trigger, RED) -->
+  <div id="screen-test1" class="card hidden">
+    <div class="card-title"><span class="tag">02</span> GRID SHOT — FLICK TEST</div>
+    <div class="test-hud">
+      <div class="test-name">Move your crosshair onto each target — no click needed</div>
+      <div class="timer-box" id="t1-timer">30</div>
+    </div>
+    <div class="test-stats">
+      <div>Hits <b id="t1-hits">0</b></div>
+      <div>Avg reaction <b id="t1-avg">—</b></div>
+      <div>Targets/min <b id="t1-rate">—</b></div>
+    </div>
+    <div class="arena-wrap">
+      <div class="arena red-tone" id="t1-arena">
+        <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+        <div class="prompt-overlay" id="t1-overlay">
+          <h3>Grid Shot</h3>
+          <p>30 seconds. Targets spawn one at a time — just move your mouse over one to hit it and spawn the next. Go as fast as you can while staying accurate.</p>
+          <button class="danger" id="t1-begin">Begin</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: TRACKING (BLUE) -->
+  <div id="screen-test2" class="card hidden">
+    <div class="card-title"><span class="tag">03</span> TRACKING TEST</div>
+    <div class="test-hud">
+      <div class="test-name">Keep your crosshair on the moving target</div>
+      <div class="timer-box" id="t2-timer">20</div>
+    </div>
+    <div class="test-stats">
+      <div>On-target <b id="t2-pct">0%</b></div>
+    </div>
+    <div class="arena-wrap">
+      <div class="arena blue-tone" id="t2-arena">
+        <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+        <div class="prompt-overlay" id="t2-overlay">
+          <h3>Tracking</h3>
+          <p>20 seconds. One target drifts around the arena — hold your crosshair on it as continuously as you can. This measures control, not speed.</p>
+          <button id="t2-begin">Begin</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: RESULTS -->
+  <div id="screen-results" class="card hidden">
+    <div class="card-title"><span class="tag">04</span> YOUR RESULT</div>
+    <div class="result-hero">
+      <div class="val" id="res-sens">0.000</div>
+      <div class="unit">in-game sensitivity</div>
+    </div>
+    <div class="copybox">
+      <span id="res-sens-copy">0.000</span>
+      <button id="copySensBtn">Copy</button>
+    </div>
+
+    <div class="grid3">
+      <div class="stat-box"><div class="k">cm / 360°</div><div class="v" id="res-cm">—</div></div>
+      <div class="stat-box"><div class="k">eDPI</div><div class="v" id="res-edpi">—</div></div>
+      <div class="stat-box"><div class="k">Adjustment</div><div class="v" id="res-adj">—</div></div>
+    </div>
+
+    <ol class="apply-steps">
+      <li>In Valorant, open <b>Settings → General → Mouse</b>.</li>
+      <li>Set <b>DPI</b> in your mouse software to <b><span id="res-dpi-hint">800</span></b> (must match what you entered).</li>
+      <li>Type the sensitivity value above into the <b>Sensitivity</b> field.</li>
+    </ol>
+
+    <div class="footer-actions">
+      <button id="retryBtn" class="ghost">Retake tests</button>
+    </div>
+
+    <p class="note" id="res-explain"></p>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
