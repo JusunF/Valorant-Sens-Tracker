@@ -36,7 +36,7 @@ sens-finder/
 **Easiest — auto-opens your browser:**
 
 ```bash
-python3 run.py
+python run.py
 ```
 
 This starts a local server on port 8000 and opens `http://localhost:8000` in your default browser automatically. Press `Ctrl+C` in the terminal to stop it.
